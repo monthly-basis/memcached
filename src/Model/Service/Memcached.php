@@ -34,7 +34,11 @@ class Memcached
      */
     public function delete($key)
     {
-        return $this->zendMemcached->removeItem($key);
+        try {
+            return $this->zendMemcached->removeItem($key);
+        } catch (RuntimeException $runtimeException) {
+            return false;
+        }
     }
 
     public function get($key)
@@ -49,18 +53,33 @@ class Memcached
     public function setForMinutes($key, $value, $minutes)
     {
         $this->zendMemcachedOptions->setTtl($minutes * 60);
-        $this->zendMemcached->setItem($key, $value);
+
+        try {
+            $this->zendMemcached->setItem($key, $value);
+        } catch (RuntimeException $runtimeException) {
+            // Do nothing.
+        }
     }
 
     public function setForHours($key, $value, $hours)
     {
         $this->zendMemcachedOptions->setTtl($hours * 60 * 60);
-        $this->zendMemcached->setItem($key, $value);
+
+        try {
+            $this->zendMemcached->setItem($key, $value);
+        } catch (RuntimeException $runtimeException) {
+            // Do nothing.
+        }
     }
 
     public function setForDays($key, $value, $days)
     {
         $this->zendMemcachedOptions->setTtl($days * 24 * 60 * 60);
-        $this->zendMemcached->setItem($key, $value);
+
+        try {
+            $this->zendMemcached->setItem($key, $value);
+        } catch (RuntimeException $runtimeException) {
+            // Do nothing.
+        }
     }
 }
