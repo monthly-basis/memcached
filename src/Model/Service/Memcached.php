@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\Memcached\Model\Service;
 
+use Zend\Cache\Exception\RuntimeException;
 use Zend\Cache\Storage\Adapter\Memcached as ZendMemcached;
 use Zend\Cache\Storage\Adapter\MemcachedOptions as ZendMemcachedOptions;
 use Zend\Cache\Storage\Adapter\MemcachedResourceManager as ZendMemcachedResourceManager;
@@ -38,7 +39,11 @@ class Memcached
 
     public function get($key)
     {
-        return $this->zendMemcached->getItem($key);
+        try {
+            return $this->zendMemcached->getItem($key);
+        } catch (RuntimeException $runtimeException) {
+            return null;
+        }
     }
 
     public function setForMinutes($key, $value, $minutes)
