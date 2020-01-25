@@ -21,7 +21,7 @@ class Module
     {
         return [
             'factories' => [
-                MemcachedService\Memcached::class => function ($serviceManager) {
+                MemcachedService\Memcached::class => function ($sm) {
                     return new MemcachedService\Memcached();
                 },
             ],
