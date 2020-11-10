@@ -18,8 +18,17 @@ class MemcachedTest extends TestCase
 
     public function testDelete()
     {
+        /*
+         * We found a bug where setting value to 'value' returns a value of NULL.
+         *
+         * We reported the issue here:
+         * https://github.com/laminas/laminas-cache-storage-adapter-memcached/issues/5
+         *
+         * Subsequent setForMinutes with values of 'value' seem to work fine.
+         * Therefore, only this first setForMinutes value is set to 'val' instead.
+         */
         $key = 'key';
-        $this->memcachedService->setForMinutes($key, 'value', 3);
+        $this->memcachedService->setForMinutes($key, 'val', 3);
         $this->assertTrue(
             $this->memcachedService->delete($key)
         );
