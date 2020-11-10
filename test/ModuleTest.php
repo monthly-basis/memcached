@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class MemcachedTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->module = new Module();
     }
