@@ -1,7 +1,7 @@
 <?php
-namespace LeoGalleguillos\MemcachedTest;
+namespace MonthlyBasis\MemcachedTest;
 
-use LeoGalleguillos\Memcached\Module;
+use MonthlyBasis\Memcached\Module;
 use PHPUnit\Framework\TestCase;
 
 class MemcachedTest extends TestCase

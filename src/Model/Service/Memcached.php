@@ -1,5 +1,5 @@
 <?php
-namespace LeoGalleguillos\Memcached\Model\Service;
+namespace MonthlyBasis\Memcached\Model\Service;
 
 use Zend\Cache\Exception\RuntimeException;
 use Zend\Cache\Storage\Adapter\Memcached as ZendMemcached;

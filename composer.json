@@ -1,14 +1,14 @@
 {
     "autoload": {
         "psr-4": {
-            "LeoGalleguillos\\Memcached\\": "src/",
-            "LeoGalleguillos\\MemcachedTest\\": "test/"
+            "MonthlyBasis\\Memcached\\": "src/",
+            "MonthlyBasis\\MemcachedTest\\": "test/"
         }
     },
     "license": "MIT",
-    "name": "leo-galleguillos/memcached",
+    "name": "monthly-basis/memcached",
     "require": {
-        "laminas/laminas-test": "^3.1",
-        "laminas/laminas-cache": "^2.7"
+        "laminas/laminas-cache": "^2.7",
+        "laminas/laminas-test": "^3.1"
     }
 }

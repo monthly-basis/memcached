@@ -1,7 +1,7 @@
 <?php
-namespace LeoGalleguillos\Memcached;
+namespace MonthlyBasis\Memcached;
 
-use LeoGalleguillos\Memcached\Model\Service as MemcachedService;
+use MonthlyBasis\Memcached\Model\Service as MemcachedService;
 
 class Module
 {
