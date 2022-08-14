@@ -1,32 +1,32 @@
 <?php
 namespace MonthlyBasis\Memcached\Model\Service;
 
-use Zend\Cache\Exception\RuntimeException;
-use Zend\Cache\Storage\Adapter\Memcached as ZendMemcached;
-use Zend\Cache\Storage\Adapter\MemcachedOptions as ZendMemcachedOptions;
-use Zend\Cache\Storage\Adapter\MemcachedResourceManager as ZendMemcachedResourceManager;
+use Laminas\Cache\Exception\RuntimeException;
+use Laminas\Cache\Storage\Adapter\Memcached as LaminasMemcached;
+use Laminas\Cache\Storage\Adapter\MemcachedOptions as LaminasMemcachedOptions;
+use Laminas\Cache\Storage\Adapter\MemcachedResourceManager as LaminasMemcachedResourceManager;
 
 class Memcached
 {
     /**
-     * @var ZendMemcached
+     * @var LaminasMemcached
      */
     private $zendMemcached;
 
     /**
-     * @var ZendMemcachedOptions
+     * @var LaminasMemcachedOptions
      */
     private $zendMemcachedOptions;
 
     public function __construct()
     {
-        $zendMemcachedResourceManager = new ZendMemcachedResourceManager();
+        $zendMemcachedResourceManager = new LaminasMemcachedResourceManager();
         $zendMemcachedResourceManager->addServer('default', 'localhost');
 
-        $this->zendMemcachedOptions = new ZendMemcachedOptions();
+        $this->zendMemcachedOptions = new LaminasMemcachedOptions();
         $this->zendMemcachedOptions->setResourceManager($zendMemcachedResourceManager);
 
-        $this->zendMemcached = new ZendMemcached($this->zendMemcachedOptions);
+        $this->zendMemcached = new LaminasMemcached($this->zendMemcachedOptions);
     }
 
     /**
