@@ -11,22 +11,22 @@ class Memcached
     /**
      * @var LaminasMemcached
      */
-    private $zendMemcached;
+    private $laminasMemcached;
 
     /**
      * @var LaminasMemcachedOptions
      */
-    private $zendMemcachedOptions;
+    private $laminasMemcachedOptions;
 
     public function __construct()
     {
-        $zendMemcachedResourceManager = new LaminasMemcachedResourceManager();
-        $zendMemcachedResourceManager->addServer('default', 'localhost');
+        $laminasMemcachedResourceManager = new LaminasMemcachedResourceManager();
+        $laminasMemcachedResourceManager->addServer('default', 'localhost');
 
-        $this->zendMemcachedOptions = new LaminasMemcachedOptions();
-        $this->zendMemcachedOptions->setResourceManager($zendMemcachedResourceManager);
+        $this->laminasMemcachedOptions = new LaminasMemcachedOptions();
+        $this->laminasMemcachedOptions->setResourceManager($laminasMemcachedResourceManager);
 
-        $this->zendMemcached = new LaminasMemcached($this->zendMemcachedOptions);
+        $this->laminasMemcached = new LaminasMemcached($this->laminasMemcachedOptions);
     }
 
     /**
@@ -35,7 +35,7 @@ class Memcached
     public function delete($key)
     {
         try {
-            return $this->zendMemcached->removeItem($key);
+            return $this->laminasMemcached->removeItem($key);
         } catch (RuntimeException $runtimeException) {
             return false;
         }
@@ -44,7 +44,7 @@ class Memcached
     public function get($key)
     {
         try {
-            return $this->zendMemcached->getItem($key);
+            return $this->laminasMemcached->getItem($key);
         } catch (RuntimeException $runtimeException) {
             return null;
         }
@@ -52,10 +52,10 @@ class Memcached
 
     public function setForMinutes($key, $value, $minutes)
     {
-        $this->zendMemcachedOptions->setTtl($minutes * 60);
+        $this->laminasMemcachedOptions->setTtl($minutes * 60);
 
         try {
-            $this->zendMemcached->setItem($key, $value);
+            $this->laminasMemcached->setItem($key, $value);
         } catch (RuntimeException $runtimeException) {
             // Do nothing.
         }
@@ -63,10 +63,10 @@ class Memcached
 
     public function setForHours($key, $value, $hours)
     {
-        $this->zendMemcachedOptions->setTtl($hours * 60 * 60);
+        $this->laminasMemcachedOptions->setTtl($hours * 60 * 60);
 
         try {
-            $this->zendMemcached->setItem($key, $value);
+            $this->laminasMemcached->setItem($key, $value);
         } catch (RuntimeException $runtimeException) {
             // Do nothing.
         }
@@ -74,10 +74,10 @@ class Memcached
 
     public function setForDays($key, $value, $days)
     {
-        $this->zendMemcachedOptions->setTtl($days * 24 * 60 * 60);
+        $this->laminasMemcachedOptions->setTtl($days * 24 * 60 * 60);
 
         try {
-            $this->zendMemcached->setItem($key, $value);
+            $this->laminasMemcached->setItem($key, $value);
         } catch (RuntimeException $runtimeException) {
             // Do nothing.
         }
