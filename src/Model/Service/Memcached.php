@@ -8,15 +8,8 @@ use Laminas\Cache\Storage\Adapter\MemcachedResourceManager as LaminasMemcachedRe
 
 class Memcached
 {
-    /**
-     * @var LaminasMemcached
-     */
-    private $laminasMemcached;
-
-    /**
-     * @var LaminasMemcachedOptions
-     */
-    private $laminasMemcachedOptions;
+    protected LaminasMemcached $laminasMemcached;
+    protected LaminasMemcachedOptions $laminasMemcachedOptions;
 
     public function __construct()
     {
@@ -24,15 +17,16 @@ class Memcached
         $laminasMemcachedResourceManager->addServer('default', 'localhost');
 
         $this->laminasMemcachedOptions = new LaminasMemcachedOptions();
-        $this->laminasMemcachedOptions->setResourceManager($laminasMemcachedResourceManager);
+        $this->laminasMemcachedOptions->setResourceManager(
+            $laminasMemcachedResourceManager
+        );
 
-        $this->laminasMemcached = new LaminasMemcached($this->laminasMemcachedOptions);
+        $this->laminasMemcached = new LaminasMemcached(
+            $this->laminasMemcachedOptions
+        );
     }
 
-    /**
-     * @return bool
-     */
-    public function delete($key)
+    public function delete($key): bool
     {
         try {
             return $this->laminasMemcached->removeItem($key);
@@ -41,7 +35,7 @@ class Memcached
         }
     }
 
-    public function get($key)
+    public function get($key): mixed
     {
         try {
             return $this->laminasMemcached->getItem($key);
