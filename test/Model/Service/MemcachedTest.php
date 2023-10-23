@@ -78,4 +78,36 @@ class MemcachedTest extends TestCase
             $this->memcachedService->get($key)
         );
     }
+
+    public function test_setNamespace()
+    {
+        // Reset memcached key-value pairs first.
+        $this->memcachedService->setNamespace('foo');
+        $this->memcachedService->delete('string');
+        $this->memcachedService->setNamespace('bar');
+        $this->memcachedService->delete('string');
+
+        $this->memcachedService->setNamespace('foo');
+        $this->memcachedService->setForDays('string', 'hello world from foo', 1);
+        $this->assertSame(
+            'hello world from foo',
+            $this->memcachedService->get('string')
+        );
+
+        $this->memcachedService->setNamespace('bar');
+        $this->assertNull(
+            $this->memcachedService->get('string')
+        );
+        $this->memcachedService->setForDays('string', 'hello world from bar', 1);
+        $this->assertSame(
+            'hello world from bar',
+            $this->memcachedService->get('string')
+        );
+
+        $this->memcachedService->setNamespace('foo');
+        $this->assertSame(
+            'hello world from foo',
+            $this->memcachedService->get('string')
+        );
+    }
 }

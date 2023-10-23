@@ -76,4 +76,9 @@ class Memcached
             // Do nothing.
         }
     }
+
+    public function setNamespace(string $namespace): void
+    {
+        $this->laminasMemcachedOptions->setNamespace($namespace);
+    }
 }
