@@ -9,6 +9,7 @@
     "name": "monthly-basis/memcached",
     "require": {
         "laminas/laminas-cache-storage-adapter-memcached": "^2.1",
-        "laminas/laminas-test": "^4.0"
+        "laminas/laminas-test": "^4.0",
+        "monthly-basis/laminas-test": "^2.0"
     }
 }
